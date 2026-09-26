@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.new-block{
+    background: pink;
+
+    &_title{
+        font-size: 20px;
+
+        &--red{
+            color: red;
+        }
+    }
+}

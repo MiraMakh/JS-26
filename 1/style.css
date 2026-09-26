@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.new-block {
+  background: pink;
+}
+.new-block_title {
+  font-size: 20px;
+}
+.new-block_title--red {
+  color: red;
+}/*# sourceMappingURL=style.css.map */
