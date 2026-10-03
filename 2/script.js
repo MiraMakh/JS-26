@@ -36,9 +36,14 @@ console.log(arr.length); */
   },
 ];
 
-console.log(arr[1].name);
-console.log(arr[2]);
-arr[3](); */
+console.log('arr[1].name',arr[1].name);
+console.log('typeof arr[1].name', typeof arr[1].name);
+console.log('arr[2]', arr[2]);
+console.log('typeof arr[2]',  typeof arr[2]);
+arr[3]();
+console.log('typeof arr[3]()',  typeof arr[3]);
+console.log('typeof arr[3]()',  typeof arr[3]()); */
+
 
 /* 
   მასივის ბოლო ელემენტის აღება 
@@ -46,13 +51,20 @@ arr[3](); */
 /* let arr = new Array("Java", "JS", "SQL");
 console.log("arr", arr);
 console.log("arr", arr[arr.length - 1]);
-console.log(arr.at(-2));
+console.log("arr[-1]", arr[-1]);
+console.log("(arr.at(-1)", arr.at(-1));
+console.log("arr.at(-2)", arr.at(-2));
+console.log(
+  "arr.at(-1) === arr[arr.length - 1]",
+  arr.at(-1) === arr[arr.length - 1],
+);
  */
 /* 
   მეთოდები pop/push და shift/unshift
  */
 
 /* const numbers = [2, 4, 6, 8, 10];
+console.log("numbers Array", numbers);
 console.log("numbers.length", numbers.length); //5
 const last = numbers.pop();
 console.log("last", last); // 10
@@ -179,6 +191,8 @@ const result = arr.filter((num) => num > 0);
 console.log(result);
  */
 
+/* const result = arr.filter((num) => num > 0).map((x) => x * 2); */
+
 /* const arr = [1, 4, 9, 16];
 const map1 = arr.map((x) => x * 2);
 console.log(map1); //[2, 8, 18, 32] */
@@ -205,6 +219,15 @@ console.log(map1); //[2, 8, 18, 32] */
 // console.log(numbers);
 
 /* 
+  includes
+*/
+/* const numbers = [10, 20, 30, 40];
+
+console.log(numbers.includes(20));// true
+console.log(numbers.includes(50)); // false
+console.log(numbers.includes(20, 2)); // false */
+
+/* 
   forEach, for…of
 */
 /* let fruits = ["Apple", "Peach", "Orange", "grapes"];
@@ -223,3 +246,40 @@ for (let fruit in fruits) {
 fruits.forEach(function (fruit, i, arr) {
   console.log(`${i}: ${fruit}`);
 }); */
+
+/* 
+  Array Destructuring 
+*/
+
+/* const numbers = [10, 20, 30];
+const [a, b, c] = numbers;
+console.log(a); // 10
+console.log(b); // 20
+console.log(c); // 30 
+
+const [first, , third] = numbers;
+console.log(first); // 10
+console.log(third); // 30*/
+
+/* const [a, b, c = 30] = [10, 20]; //ნაგულისხმევი მნიშვნელობა
+console.log(c); // 30 */
+
+/* Rest/ Spread */
+/* const [first, ...rest] = [10, 20, 30, 40];
+console.log(first); // 10
+console.log(rest); // [20, 30, 40] */
+
+/* const numbers = [10, 20, 30];
+const copy = [...numbers];
+console.log("მასივის ელემენტები ახალ მასივში გადაიტანა", copy); // [10, 20, 30]
+console.log("copy === numbers", copy === numbers); // false */
+
+/* const first = [1, 2, 3];
+const second = [4, 5, 6];
+const result = [...first, ...second];
+console.log("მასივების გაერთიანება", result); // [1, 2, 3, 4, 5, 6]
+ */
+
+/* const numbers = [2, 3, 4];
+const newNumbers = [1, ...numbers, 5];
+console.log("ახალი ელემენტების დამატება", newNumbers); // [1, 2, 3, 4, 5] */
