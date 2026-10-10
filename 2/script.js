@@ -259,27 +259,28 @@ console.log(c); // 30
 
 const [first, , third] = numbers;
 console.log(first); // 10
-console.log(third); // 30*/
+console.log(third); // 30 */
 
 /* const [a, b, c = 30] = [10, 20]; //ნაგულისხმევი მნიშვნელობა
 console.log(c); // 30 */
 
 /* Rest/ Spread */
-/* const [first, ...rest] = [10, 20, 30, 40];
+/* const [first, a, b, ...rest] = [10, 20, 30, 40];
 console.log(first); // 10
 console.log(rest); // [20, 30, 40] */
 
 /* const numbers = [10, 20, 30];
 const copy = [...numbers];
 console.log("მასივის ელემენტები ახალ მასივში გადაიტანა", copy); // [10, 20, 30]
-console.log("copy === numbers", copy === numbers); // false */
+console.log("copy === numbers", copy === numbers); // false
+console.log("copy", copy); // false */
 
 /* const first = [1, 2, 3];
 const second = [4, 5, 6];
 const result = [...first, ...second];
-console.log("მასივების გაერთიანება", result); // [1, 2, 3, 4, 5, 6]
- */
+console.log("მასივების გაერთიანება", result); // [1, 2, 3, 4, 5, 6] */
 
-/* const numbers = [2, 3, 4];
+
+const numbers = [2, 3, 4];
 const newNumbers = [1, ...numbers, 5];
-console.log("ახალი ელემენტების დამატება", newNumbers); // [1, 2, 3, 4, 5] */
+console.log("ახალი ელემენტების დამატება", newNumbers); // [1, 2, 3, 4, 5]
