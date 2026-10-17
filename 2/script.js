@@ -2,6 +2,9 @@
 
 /* მასივის შექმნა */
 
+//mgeli ar moishlis mglobasa,arwivi arwivobasa,
+// kargi yma vazhkacobasa
+
 /* let arr = new Array(5);
 let arr1 = [];
 
@@ -12,7 +15,7 @@ console.log("arr", arr);
 console.log(arr1);
 console.log("arr1.length:", arr1.length); */
 
-/* let arr = new Array("Java", "JS", "SQL");*/
+/* let arr = new Array("C++", "JS", "SQL");*/
 /* let arr = ["Java", "JS", "SQL"]; */
 /* arr[0] = "Angular";
 console.log(arr[0]);
