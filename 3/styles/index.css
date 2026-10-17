@@ -1,0 +1,115 @@
+@charset "UTF-8";
+/* @import "./funtions"; */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 20px;
+  font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+}
+
+body {
+  background-color: pink;
+}
+
+h1 {
+  width: 18.2291666667%;
+  /*   @include title-main(); */
+  font-size: 1.5rem;
+  font-size: 1.3333333333;
+  box-shadow: 0px 0px 5px rgb(22, 18, 255);
+  /* background: pink; */
+}
+
+.new-block {
+  width: 46.875%;
+  margin-right: 3.125%;
+  background: #70b44f;
+}
+.new-block__title {
+  width: 100%;
+  background: #ffc;
+}
+.new-block__title--red {
+  background: red;
+}
+.new-block__paragraph {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #d10000;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: "sylfaen";
+  letter-spacing: 2px;
+  font-weight: normal;
+}
+
+/* შეტყობინებების კონტეინერი ეკრანის ზედა მარჯვენა კუთხეში */
+#notification-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+/* შეტყობინების ძირითადი ბლოკი */
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 280px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.3s ease-out;
+  font-size: 14px;
+}
+
+/* სხვადასხვა ტიპის სტილები */
+.toast.success {
+  background-color: #2ecc71;
+}
+
+.toast.warning {
+  background-color: #f39c12;
+}
+
+.toast.danger {
+  background-color: #e74c3c;
+}
+
+/* დახურვის ღილაკი */
+.toast .close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 15px;
+  opacity: 0.8;
+}
+
+.toast .close-btn:hover {
+  opacity: 1;
+}
+
+/* გამოჩენის ანიმაცია */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}/*# sourceMappingURL=index.css.map */

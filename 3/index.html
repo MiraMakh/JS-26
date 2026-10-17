@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM and Events - 3</title>
+    <link href="styles/index.css" rel="stylesheet" />
+    <style>
+      body {
+        color: red;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="new-block">
+      <h1 class="new-block__title"><a href="#">Lorem ipsum dolor</a></h1>
+      <p class="new-block__paragraph">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque dolorum
+        quam laboriosam facere magni excepturi suscipit a pariatur natus
+        assumenda. Quam rerum sint fugit sed nostrum ullam deleniti nam.
+        Deleniti!
+      </p>
+    </div>
+
+    <div class="new-block">
+      <h1 class="new-block__title new-block__title--red">
+        <a href="#">Lorem ipsum dolor</a>
+      </h1>
+      <p class="new-block__paragraph">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque dolorum
+        quam laboriosam facere magni excepturi suscipit a pariatur natus
+        assumenda. Quam rerum sint fugit sed nostrum ullam deleniti nam.
+        Deleniti!
+      </p>
+    </div>
+
+    <h1>DOM and Events</h1>
+
+    <nav>
+      <ul id="menu">
+        <li class="item">HTML</li>
+        <li class="item">CSS</li>
+        <li class="item highlight">JavaScript</li>
+        <li class="item">TypeScript</li>
+      </ul>
+    </nav>
+
+    <div id="elem">
+      <div id="elem-content">Element</div>
+    </div>
+
+    <div class="container">
+      <!-- Information -->
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </p>
+
+      <!-- A dummy text -->
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </p>
+    </div>
+
+    <h2>DOM-ის მანიპულაცია: შეტყობინების გენერატორი</h2>
+    <p>დააჭირეთ ღილაკებს დოკუმენტში ახალი ელემენტების ჩასასმელად:</p>
+
+    <button
+      onclick="
+        createNotification('წარმატება! მონაცემები შენახულია.', 'success')
+      "
+    >
+      წარმატება
+    </button>
+    <button
+      onclick="
+        createNotification('გაფრთხილება! გადაამოწმეთ ველები.', 'warning')
+      "
+    >
+      გაფრთხილება
+    </button>
+    <button onclick="createNotification('შეცდომა! კავშირი გაწყდა.', 'danger')">
+      შეცდომა
+    </button>
+
+    <!-- კონტეინერი, სადაც დინამიკურად ჩაიწერება შეტყობინებები -->
+    <div id="notification-container"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
