@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="ka">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DOM და ივენთების სრული მაგალითი</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+        margin: 0;
+        background-color: #f9f9f9;
+        height: 200vh; /* სქროლის მოსინჯვისთვის */
+      }
+
+      .section {
+        background: white;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      /* გადასაადგილებელი კვადრატი */
+      #movingDiv {
+        width: 120px;
+        height: 120px;
+        background-color: #ffb6c1;
+        cursor: grab;
+        text-align: center;
+        line-height: 120px;
+        font-weight: bold;
+        border-radius: 6px;
+        user-select: none;
+      }
+
+      .invalid {
+        border: 2px solid red !important;
+        background-color: #ffe6e6;
+      }
+
+      .error-msg {
+        color: red;
+        font-size: 13px;
+        margin-top: 4px;
+      }
+
+      /* ფიქსირებული Scroll მაჩვენებელი */
+      #scrollInfo {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 5px;
+        font-size: 14px;
+        z-index: 9999;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="scrollInfo">გადახვევა (ScrollY): 0px</div>
+
+    <!-- 1. ღილაკები და ივენთები -->
+    <div class="section">
+      <h3>1. ივენთების დამუშავება</h3>
+      <button id="clickBtn">დააკლიკე (EventListener)</button>
+      <button id="dom-property">DOM Property ღილაკი</button>
+      <div id="demo">რანდომ რიცხვი გამოჩნდება მაუსის მოძრაობისას:</div>
+      <button id="stopRandom">მაუსის ივენთის გათიშვა</button>
+    </div>
+
+    <!-- 2. Drag & Drop (მაუსის ივენთები) -->
+    <div class="section">
+      <h3>2. გადასაადგილებელი ობიექტი (გაათრიეთ მაუსით)</h3>
+      <div id="movingDiv">გადამწიე</div>
+    </div>
+
+    <!-- 3. ფორმა და ვალიდაცია -->
+    <div class="section">
+      <h3>3. ფორმა და ფორმის ელემენტები</h3>
+      <form name="contactForm" id="contactForm">
+        <div>
+          <label>სახელი: </label><br />
+          <input type="text" name="firstName" placeholder="შეიყვანეთ სახელი" />
+        </div>
+        <br />
+        <div>
+          <label>გვარი (აქვს კოპირება/ჩასმის კონტროლი): </label><br />
+          <input type="text" name="LastName" placeholder="შეიყვანეთ გვარი" />
+        </div>
+        <br />
+        <div>
+          <label>ელ. ფოსტა (Focus / Blur ვალიდაცია): </label><br />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="test@gmail.com"
+          />
+          <div id="error" class="error-msg"></div>
+        </div>
+        <br />
+        <div>
+          <label>აირჩიეთ ქალაქი:</label><br />
+          <select name="select" id="select">
+            <option value="თბილისი">თბილისი</option>
+            <option value="ქუთაისი">ქუთაისი</option>
+            <option value="ბორჯომი">ბორჯომი</option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      "use strict";
+
+      // --- DOMContentLoaded: როცა HTML სრულად იტვირთება ---
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("DOM სრულად არის მზად!");
+      });
+
+      // --- 1. ჩვეულებრივი კლიკის და DOM Property ივენთები ---
+      const clickBtn = document.getElementById("clickBtn");
+      let counter = 0;
+
+      clickBtn.addEventListener("click", (event) => {
+        counter++;
+        console.log(
+          `ღილაკზე დაკლიკდა ${counter}-ჯერ. ღილაკის კოორდინატები X: ${event.clientX}, Y: ${event.clientY}`,
+        );
+      });
+
+      const domEl = document.getElementById("dom-property");
+      domEl.onclick = function () {
+        console.log("DOM Property (.onclick) გამოყენებულია");
+      };
+
+      // Window mousemove და ფუნქციის მოხსნა (removeEventListener)
+      function showRandomNumber() {
+        document.getElementById("demo").innerHTML =
+          "რანდომ რიცხვი: " + Math.random();
+      }
+
+      window.addEventListener("mousemove", showRandomNumber);
+
+      document.getElementById("stopRandom").addEventListener("click", () => {
+        window.removeEventListener("mousemove", showRandomNumber);
+        console.log("მაუსის მოძრაობის ივენთი გაითიშა!");
+      });
+
+      // --- 2. მაუსის გადაადგილება (Moving Div / Drag and Drop) ---
+      const movingDiv = document.getElementById("movingDiv");
+
+      movingDiv.onmousedown = function (event) {
+        let shiftX = event.clientX - movingDiv.getBoundingClientRect().left;
+        let shiftY = event.clientY - movingDiv.getBoundingClientRect().top;
+
+        movingDiv.style.position = "absolute";
+        movingDiv.style.zIndex = 1000;
+        document.body.append(movingDiv);
+
+        moveToNewPosition(event.pageX, event.pageY);
+
+        function moveToNewPosition(pageX, pageY) {
+          movingDiv.style.left = pageX - shiftX + "px";
+          movingDiv.style.top = pageY - shiftY + "px";
+        }
+
+        function onMove(event) {
+          moveToNewPosition(event.pageX, event.pageY);
+        }
+
+        document.addEventListener("mousemove", onMove);
+
+        movingDiv.onmouseup = function () {
+          document.removeEventListener("mousemove", onMove);
+          movingDiv.onmouseup = null;
+        };
+      };
+
+      // --- 3. კლავიატურის ივენთები ---
+      document.addEventListener("keydown", (event) => {
+        // მაგალითად, ვბეჭდავთ კონსოლში რა ღილაკს დააჭირა მომხმარებელმა
+        console.log(`დაჭერილია კლავიში: ${event.key}, კოდი: ${event.code}`);
+      });
+
+      // --- 4. დოკუმენტის სქროლვა (Scroll) ---
+      window.addEventListener("scroll", () => {
+        const scrollInfo = document.getElementById("scrollInfo");
+        scrollInfo.innerText = `გადახვევა (ScrollY): ${Math.round(window.scrollY)}px`;
+      });
+
+      // --- 5. ფორმებთან მუშაობა და ვალიდაცია ---
+      const form = document.forms.contactForm;
+
+      // ავტომატურად ვავსებთ სახელს საწყის ეტაპზე
+      form.firstName.value = "გიორგი";
+
+      // input ივენთი - რეალურ დროში ტექსტის ცვლილებისას
+      form.firstName.addEventListener("input", () => {
+        console.log("სახელი იცვლება:", form.firstName.value);
+      });
+
+      // გვარზე ვბლოკავთ Paste (ჩასმის) ოპერაციას
+      form.LastName.addEventListener("paste", (event) => {
+        console.log("ჩასმა აკრძალულია ამ ველში!");
+        event.preventDefault();
+      });
+
+      // Email-ის Focus და Blur ვალიდაცია
+      const email = document.getElementById("email");
+      const error = document.getElementById("error");
+
+      email.addEventListener("blur", () => {
+        if (email.value !== "" && !email.value.includes("@")) {
+          email.classList.add("invalid");
+          error.innerHTML =
+            "გთხოვთ, შეიყვანოთ სწორი ელ.ფოსტა (უნდა შეიცავდეს @ სიმბოლოს)";
+        }
+      });
+
+      email.addEventListener("focus", () => {
+        if (email.classList.contains("invalid")) {
+          email.classList.remove("invalid");
+          error.innerHTML = "";
+        }
+      });
+
+      // --- 6. Page Load / Unload ივენთები ---
+      window.onload = function () {
+        console.log("გვერდი სრულად ჩაიწერა (load)");
+      };
+
+      window.addEventListener("beforeunload", (event) => {
+        event.preventDefault();
+      });
+    </script>
+  </body>
+</html>
