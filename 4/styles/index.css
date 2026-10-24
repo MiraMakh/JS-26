@@ -1,0 +1,15 @@
+/* @import "./funtions"; */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 20px;
+  font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+}
+
+body {
+  background: silver;
+}/*# sourceMappingURL=index.css.map */

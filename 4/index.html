@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM and Events - 4</title>
+    <link href="styles/index.css" rel="stylesheet" />
+  </head>
+  <body onclick="console.log('body')">
+    <!-- ივენთბის დამუშავება -->
+    <div onclick="console.log('Click!')">Click me</div>
+
+    <div onclick="handleClick()">Click me Function</div>
+
+    <div id="dom-property">Click handler with DOM property</div>
+
+    <button onclick="removeHandler()">stop random</button>
+    <p id="demo"></p>
+
+    <!-- Bubbling -->
+    <div onclick="console.log('div')">
+      div
+      <p onclick="console.log('p');">p</p>
+      <p onclick="console.log('p1'); event.stopPropagation()">p1</p>
+    </div>
+
+    <div
+      id="movingDiv"
+      style="width: 50px; height: 50px; background: pink; text-align: center"
+    >
+      test
+    </div>
+
+    <form name="contactForm">
+      <input name="firstName" placeholder="შეიყვანეთ სახელი" />
+      <input name="LastName" placeholder="შეიყვანეთ გვარი" />
+      <br />
+      თქვენი ელ ფოსტა: <input type="email" id="email" />
+      <div id="error"></div>
+      <br />
+      <label>
+        აირჩიეთ სქესი
+        <input type="radio" value="male" checked name="gender" />
+        <input type="radio" value="female" name="gender" />
+        <input type="radio" value="other" name="gender" />
+      </label>
+      <br />
+      <select name="select">
+        <option value="თბილისი">თბილისი</option>
+        <option value="ქუთაისი">ქუთაისი</option>
+        <option value="ბორჯომი">ბორჯომი</option>
+      </select>
+
+      <select id="classicMusic" multiple>
+        <option value="blues" selected>Blues</option>
+        <option value="rock" selected>Rock</option>
+        <option value="classic">Classic</option>
+      </select>
+    </form>
+
+    <p id="p">მაგალითად: <i>არსებობს</i> და <b>არარსებობს</b></p>
+    <script src="script.js"></script>
+  </body>
+</html>
