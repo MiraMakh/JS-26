@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "node main.js",
-    "format": "prettier --write \"**/*.js\""
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "format": "prettier --write \"**/*.ts\""
   },
   "dependencies": {
     "chalk": "^6.0.1"
   },
   "devDependencies": {
-    "prettier": "^3.10.1"
+    "prettier": "^3.10.1",
+    "typescript": "^7.0.2"
   }
 }
